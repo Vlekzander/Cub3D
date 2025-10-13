@@ -6,6 +6,7 @@ LIBFT_LIB= $(LIBFT_DIR)/libft.a
 MLX_DIR= lib/mlx
 MLX_LIB= $(MLX_DIR)/libmlx.a
 SOURCES = src/main.c	\
+		  src/error/print_error.c	\
 		  src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_handler.c src/mlx_core/update.c
 OBJECTS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.d)

@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:00:09 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 14:14:54 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/13 15:13:04 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define KEY_ESC 65307
+# include "error.h"
 
 typedef struct s_mlx_core
 {
@@ -24,7 +25,7 @@ typedef struct s_mlx_core
 	int		height;
 }	t_mlx_core;
 
-t_mlx_core	*init_core(char *title);
+t_error		init_core(t_mlx_core **core, char *title);
 void		free_core(t_mlx_core *core);
 int			key_handler(int keycode, t_mlx_core *core);
 int			update(t_mlx_core *core);
