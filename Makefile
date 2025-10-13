@@ -29,7 +29,7 @@ clean:
 	make -C $(MLX_DIR) clean --no-print-directory
 	rm -f $(OBJECTS) $(DEPS)
 
-fclean:
+fclean: clean
 	make -C $(LIBFT_DIR) fclean --no-print-directory
 	rm -f $(NAME)
 
