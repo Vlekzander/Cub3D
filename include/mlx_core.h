@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_core.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 14:51:15 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/13 14:00:09 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/13 14:14:54 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_core.h"
+#ifndef MLX_CORE_H
+# define MLX_CORE_H
+# define WIDTH 1920
+# define HEIGHT 1080
+# define KEY_ESC 65307
 
-int	main(void)
+typedef struct s_mlx_core
 {
-	t_mlx_core	*core;
+	void	*mlx;
+	void	*window;
+	int		width;
+	int		height;
+}	t_mlx_core;
 
-	core = init_core("Cub3D");
-	free_core(core);
-	return (0);
-}
+t_mlx_core	*init_core(char *title);
+void		free_core(t_mlx_core *core);
+int			key_handler(int keycode, t_mlx_core *core);
+int			update(t_mlx_core *core);
+
+#endif

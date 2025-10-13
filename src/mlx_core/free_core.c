@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_core.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 14:51:15 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/13 14:48:39 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/13 14:50:34 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "mlx.h"
 #include "mlx_core.h"
 
-int	main(void)
+void	free_core(t_mlx_core *core)
 {
-	t_mlx_core	*core;
-
-	core = init_core("Cub3D");
-	free_core(core);
-	return (0);
+	if (core == NULL)
+		return ;
+	mlx_destroy_window(core->mlx, core->window);
+	mlx_destroy_display(core->mlx);
+	free(core->mlx);
+	free(core);
 }
