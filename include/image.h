@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 16:42:16 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 12:42:16 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:49:18 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_image	*create_image(int width, int height);
 void	free_image(t_image *image);
 void	put_pixel(t_image *image, int x, int y, int color);
 void	fill_image(t_image *image, int color);
+void	draw_image(t_image *dst, t_image *src, int x, int y);
 
 #endif
