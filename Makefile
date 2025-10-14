@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(LIBFT_DIR)/include -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(LIBFT_DIR)/include -I$(MLX_DIR) -g
 LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 LIBFT_DIR= lib/libft
 LIBFT_LIB= $(LIBFT_DIR)/libft.a
@@ -9,7 +9,8 @@ SOURCES = src/main.c	\
 		  src/color/get_color_channel.c src/color/rgb.c src/color/rgba.c	\
 		  src/error/print_error.c	\
 		  src/image/create_image.c src/image/draw_image.c src/image/fill_image.c src/image/free_image.c src/image/put_pixel.c	\
-		  src/mlx_core/flush_screen.c src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_handler.c src/mlx_core/update.c
+		  src/mlx_core/flush_screen.c src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_handler.c src/mlx_core/update.c	\
+		  src/parser/parse_tga.c
 OBJECTS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.d)
 NAME = cub3D

@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:05:19 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 15:09:29 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:35:22 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ static char	*get_error_message(t_error err)
 		return ("Implementation error");
 	if (err == ERR_ALLOCATION)
 		return ("Allocation error");
+	if (err == ERR_FILE_OPEN)
+		return ("Open file error");
+	if (err == ERR_FILE_READ)
+		return ("Read file error");
+	if (err == ERR_FILE_FORMAT)
+		return ("Invalid file format");
 	return ("Unknown error");
 }
 
