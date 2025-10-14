@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "image.h"
 #include "mlx.h"
 #include "mlx_core.h"
 
@@ -19,7 +20,9 @@ void	free_core(t_mlx_core *core)
 	if (core == NULL)
 		return ;
 	mlx_destroy_window(core->mlx, core->window);
+	mlx_destroy_image(core->mlx, core->img);
 	mlx_destroy_display(core->mlx);
 	free(core->mlx);
+	free_image(core->screen);
 	free(core);
 }

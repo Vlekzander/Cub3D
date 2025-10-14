@@ -16,11 +16,14 @@
 # define HEIGHT 1080
 # define KEY_ESC 65307
 # include "error.h"
+# include "image.h"
 
 typedef struct s_mlx_core
 {
 	void	*mlx;
 	void	*window;
+	void	*img;
+	t_image	*screen;
 	int		width;
 	int		height;
 }	t_mlx_core;
@@ -29,5 +32,6 @@ t_error		init_core(t_mlx_core **core, char *title);
 void		free_core(t_mlx_core *core);
 int			key_handler(int keycode, t_mlx_core *core);
 int			update(t_mlx_core *core);
+t_error		flush_screen(t_mlx_core *core);
 
 #endif
