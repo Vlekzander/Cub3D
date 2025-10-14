@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:50:48 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 19:02:05 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:35:28 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	put_pixel_mlx(void *image, int x, int y, int color)
 
 t_error	flush_screen(t_mlx_core *core)
 {
-	unsigned int	i;
-	unsigned int	j;
-	int				color;
+	int	i;
+	int	j;
+	int	color;
 
 	i = 0;
 	while (i < core->screen->height)

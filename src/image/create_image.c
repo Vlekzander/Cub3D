@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 16:47:11 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:50:32 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/14 12:33:50 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "image.h"
 #include "libft.h"
 
-t_image	*create_image(unsigned int width, unsigned int height)
+t_image	*create_image(int width, int height)
 {
 	t_image	*image;
 
-	if (width < 1 || height < 1 || width > UINT_MAX / height / sizeof(int))
+	if (width < 1 || height < 1 || width > INT_MAX / height)
 		return (NULL);
 	image = ft_calloc(1, sizeof(t_image));
 	if (image == NULL)
