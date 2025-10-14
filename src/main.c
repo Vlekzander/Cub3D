@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "error.h"
+#include "mlx.h"
 #include "mlx_core.h"
 
 int	main(void)
@@ -21,6 +22,7 @@ int	main(void)
 	error = init_core(&core, "Cub3D");
 	if (error != ERR_NONE)
 		return (print_error(error), 1);
+	mlx_loop(core->mlx);
 	free_core(core);
 	return (0);
 }
