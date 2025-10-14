@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "image.h"
 #include "mlx.h"
 #include "mlx_core.h"
 
@@ -46,5 +47,6 @@ t_error	flush_screen(t_mlx_core *core)
 		i++;
 	}
 	mlx_put_image_to_window(core->mlx, core->window, core->img, 0, 0);
+	fill_image(core->screen, 0);
 	return (ERR_NONE);
 }
