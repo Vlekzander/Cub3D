@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 16:42:16 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 12:37:23 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/14 12:37:35 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/14 12:39:02 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#include <stddef.h>
+#include "image.h"
 
-typedef struct s_image
+void	put_pixel(t_image *image, int x, int y, int color)
 {
-	int	width;
-	int	height;
-	int	*pixels;
-}	t_image;
-
-t_image	*create_image(int width, int height);
-void	free_image(t_image *image);
-void	put_pixel(t_image *image, int x, int y, int color);
-
-#endif
+	if (image == NULL || image->pixels == NULL)
+		return ;
+	image->pixels[y * image->width + x] = color;
+}
