@@ -6,25 +6,17 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:42:34 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 12:45:25 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/15 12:33:16 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "image.h"
+#include "shapes.h"
 
 void	fill_image(t_image *image, int color)
 {
-	int	i;
-	int	size;
-
-	if (image == NULL || image->pixels == NULL)
+	if (image == NULL)
 		return ;
-	size = image->width * image->height;
-	i = 0;
-	while (i < size)
-	{
-		image->pixels[i] = color;
-		i++;
-	}
+	draw_rect(image, (t_rect){0, 0, image->width, image->height}, 1, color);
 }
