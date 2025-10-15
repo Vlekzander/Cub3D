@@ -35,6 +35,6 @@ void	print_error(t_error err)
 {
 	if (err == ERR_NONE)
 		return ;
-	ft_putstr_fd("[ERROR] ", STDERR_FILENO);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putendl_fd(get_error_message(err), STDERR_FILENO);
 }
