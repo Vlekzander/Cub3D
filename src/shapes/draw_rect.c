@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include "color.h"
 #include "image.h"
 #include "shapes.h"
 
@@ -45,7 +44,6 @@ void	draw_rect(t_image *image, t_rect rect, int fill, int color)
 {
 	int	i;
 	int	j;
-	int	base_color;
 
 	if (image == NULL || rect.width == 0 || rect.height == 0)
 		return ;
@@ -58,11 +56,10 @@ void	draw_rect(t_image *image, t_rect rect, int fill, int color)
 		j = rect.x;
 		while (j < rect.x + rect.width && j < image->width)
 		{
-			base_color = image->pixels[i * image->width + j];
 			if (fill || (i == rect.y || j == rect.x
 					|| i == rect.y + rect.height -1
 					|| j == rect.x + rect.width -1))
-				put_pixel(image, j, i, blend_colors(base_color, color));
+				put_pixel(image, j, i, color);
 			j++;
 		}
 		i++;

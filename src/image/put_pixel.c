@@ -11,12 +11,16 @@
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "color.h"
 #include "image.h"
 
 void	put_pixel(t_image *image, int x, int y, int color)
 {
+	int	base_color;
+
 	if (image == NULL || x < 0 || y < 0
 		|| x >= image->width || y >= image->height)
 		return ;
-	image->pixels[y * image->width + x] = color;
+	base_color = image->pixels[y * image->width + x];
+	image->pixels[y * image->width + x] = blend_colors(base_color, color);
 }
