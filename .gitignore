@@ -1,3 +1,5 @@
+.idea
+.vscode
 *.o
 *.d
 cub3D
