@@ -11,7 +11,8 @@ SOURCES = src/main.c	\
 		  src/image/create_image.c src/image/draw_image.c src/image/fill_image.c src/image/free_image.c src/image/put_pixel.c	\
 		  src/mlx_core/flush_screen.c src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_handler.c src/mlx_core/update.c	\
 		  src/parser/parse_tga.c	\
-		  src/shapes/draw_line.c src/shapes/draw_rect.c
+		  src/shapes/draw_line.c src/shapes/draw_rect.c	\
+		  src/utils/strend.c
 OBJECTS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.d)
 NAME = cub3D

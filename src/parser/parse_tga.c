@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:20:40 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 15:36:11 by apierret         ###   ########.fr       */
+/*   Updated: 2025/10/16 10:46:40 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "image.h"
 #include "libft.h"
 #include "parser.h"
+#include "utils.h"
 
 static t_error	read_header(t_tga_header *header, int fd)
 {
@@ -78,6 +79,10 @@ t_error	parse_tga(t_image **image, const char *path)
 	t_tga_header	header;
 	t_image			*img;
 
+	if (image == NULL || path == NULL)
+		return (ERR_IMPLEMENTATION);
+	if (!strend(path, ".tga"))
+		return (ERR_FILE_FORMAT);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ERR_FILE_OPEN);
