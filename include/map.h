@@ -34,6 +34,8 @@ typedef struct s_map
 	int				color_floor;
 	int				width;
 	int				height;
+	int				spawn_x;
+	int				spawn_y;
 	t_facing		facing;
 }	t_map;
 

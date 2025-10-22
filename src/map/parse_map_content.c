@@ -82,7 +82,11 @@ static t_error	fill_grid_line(t_map *map, int y, char *str)
 		if (str[i] == '1')
 			map->grid[y * map->width + i] = 1;
 		else if (ft_strchr("NSEW", str[i]) != NULL)
+		{
 			map->facing = str[i];
+			map->spawn_x = i;
+			map->spawn_y = y;
+		}
 		i++;
 	}
 	return (ERR_NONE);
