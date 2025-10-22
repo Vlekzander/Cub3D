@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   is_space.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/20 14:46:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/20 10:51:21 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/20 10:54:07 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-void	free_ddarray(void **array);
-int		len_ddarray(void **array);
-int		strend(const char *str, const char *end);
-int		is_space(const char *str);
-char	*read_file(int fd);
-char	*strtrim_end(char *str, const char *set);
+int	is_space(const char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}

@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   strtrim_end.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/20 14:46:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/20 14:34:37 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/20 14:38:51 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "libft.h"
+#include "utils.h"
 
-void	free_ddarray(void **array);
-int		len_ddarray(void **array);
-int		strend(const char *str, const char *end);
-int		is_space(const char *str);
-char	*read_file(int fd);
-char	*strtrim_end(char *str, const char *set);
+char	*strtrim_end(char *str, const char *set)
+{
+	int	i;
+	int	end;
 
-#endif
+	if (str == NULL || set == NULL)
+		return (NULL);
+	end = -1;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (end == -1 && ft_strchr(set, str[i]) != NULL)
+			end = i;
+		else if (ft_strchr(set, str[i]) == NULL)
+			end = -1;
+		i++;
+	}
+	if (end != -1)
+		str[end] = '\0';
+	return (str);
+}

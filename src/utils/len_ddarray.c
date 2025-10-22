@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   len_ddarray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/20 14:46:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/17 22:00:00 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/17 22:00:34 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <stddef.h>
+#include "utils.h"
 
-void	free_ddarray(void **array);
-int		len_ddarray(void **array);
-int		strend(const char *str, const char *end);
-int		is_space(const char *str);
-char	*read_file(int fd);
-char	*strtrim_end(char *str, const char *set);
+int	len_ddarray(void **array)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
+}

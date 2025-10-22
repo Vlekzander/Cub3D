@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/20 14:46:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/17 14:05:15 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/21 10:15:48 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <stdlib.h>
+#include "image.h"
+#include "map.h"
 
-void	free_ddarray(void **array);
-int		len_ddarray(void **array);
-int		strend(const char *str, const char *end);
-int		is_space(const char *str);
-char	*read_file(int fd);
-char	*strtrim_end(char *str, const char *set);
-
-#endif
+void	free_map(t_map *map)
+{
+	if (map == NULL)
+		return ;
+	free_image(map->north);
+	free_image(map->south);
+	free_image(map->east);
+	free_image(map->west);
+	free(map->grid);
+	free(map);
+}
