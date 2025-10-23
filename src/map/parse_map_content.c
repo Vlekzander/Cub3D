@@ -81,7 +81,7 @@ static t_error	fill_grid_line(t_map *map, int y, char *str)
 			return (ERR_FILE_FORMAT);
 		if (str[i] == '1')
 			map->grid[y * map->width + i] = WALL;
-		else if (str[i] == '0')
+		else if (str[i] == '0' || ft_strchr("NSEW", str[i]) != NULL)
 			map->grid[y * map->width + i] = SPACE;
 		else if (ft_strchr("NSEW", str[i]) != NULL)
 		{
