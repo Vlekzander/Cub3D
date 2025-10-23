@@ -38,7 +38,7 @@ static int	is_map_block(char *str)
 	return (1);
 }
 
-static t_error	prepare_grid(unsigned char **grid, int *width, int *height,
+static t_error	prepare_grid(t_cell_type **grid, int *width, int *height,
 									char **array)
 {
 	int	len;
@@ -80,7 +80,9 @@ static t_error	fill_grid_line(t_map *map, int y, char *str)
 			|| (ft_strchr("NSEW", str[i]) != NULL && map->facing != 0))
 			return (ERR_FILE_FORMAT);
 		if (str[i] == '1')
-			map->grid[y * map->width + i] = 1;
+			map->grid[y * map->width + i] = WALL;
+		else if (str[i] == '0')
+			map->grid[y * map->width + i] = SPACE;
 		else if (ft_strchr("NSEW", str[i]) != NULL)
 		{
 			map->facing = str[i];

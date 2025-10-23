@@ -15,6 +15,12 @@
 # include "error.h"
 # include "image.h"
 
+typedef enum e_cell_type
+{
+	OUTSIDE,
+	WALL,
+	SPACE
+}	t_cell_type;
 typedef enum e_facing
 {
 	NORTH = 'N',
@@ -25,7 +31,7 @@ typedef enum e_facing
 
 typedef struct s_map
 {
-	unsigned char	*grid;
+	t_cell_type		*grid;
 	t_image			*north;
 	t_image			*south;
 	t_image			*east;
