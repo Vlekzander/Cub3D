@@ -39,5 +39,8 @@ t_error	parse_map(t_map **map, const char *path)
 	error = parse_map_content(cub, fd);
 	if (error != ERR_NONE)
 		return (close(fd), free_map(cub), error);
+	error = parse_map_check(cub);
+	if (error != ERR_NONE)
+		return (close(fd), free_map(cub), error);
 	return (close(fd), *map = cub, ERR_NONE);
 }

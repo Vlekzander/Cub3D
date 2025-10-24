@@ -59,7 +59,7 @@ static t_error	prepare_grid(t_cell_type **grid, int *width, int *height,
 			len = c_len;
 		i++;
 	}
-	*grid = ft_calloc(len * i, sizeof(unsigned char));
+	*grid = ft_calloc(len * i, sizeof(t_cell_type));
 	if (*grid == NULL)
 		return (ERR_ALLOCATION);
 	*width = len;
