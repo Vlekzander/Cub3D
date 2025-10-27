@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   strtrim_end.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/20 14:34:37 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/20 14:38:51 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#include "libft.h"
+#include "utils.h"
 
-int	main(void)
+char	*strtrim_end(char *str, const char *set)
 {
-	t_error		error;
-	t_mlx_core	*core;
+	int	i;
+	int	end;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	if (str == NULL || set == NULL)
+		return (NULL);
+	end = -1;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (end == -1 && ft_strchr(set, str[i]) != NULL)
+			end = i;
+		else if (ft_strchr(set, str[i]) == NULL)
+			end = -1;
+		i++;
+	}
+	if (end != -1)
+		str[end] = '\0';
+	return (str);
 }

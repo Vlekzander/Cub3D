@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/17 14:05:15 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/21 10:15:48 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#include <stdlib.h>
+#include "image.h"
+#include "map.h"
 
-int	main(void)
+void	free_map(t_map *map)
 {
-	t_error		error;
-	t_mlx_core	*core;
-
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	if (map == NULL)
+		return ;
+	free_image(map->north);
+	free_image(map->south);
+	free_image(map->east);
+	free_image(map->west);
+	free(map->grid);
+	free(map);
 }

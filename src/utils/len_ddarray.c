@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   len_ddarray.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/17 22:00:00 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/17 22:00:34 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#include <stddef.h>
+#include "utils.h"
 
-int	main(void)
+int	len_ddarray(void **array)
 {
-	t_error		error;
-	t_mlx_core	*core;
+	int	i;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
 }

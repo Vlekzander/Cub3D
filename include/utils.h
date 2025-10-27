@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/20 14:46:13 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	main(void)
-{
-	t_error		error;
-	t_mlx_core	*core;
+void	free_ddarray(void **array);
+int		len_ddarray(void **array);
+int		strend(const char *str, const char *end);
+int		is_space(const char *str);
+char	*read_file(int fd);
+char	*strtrim_end(char *str, const char *set);
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
-}
+#endif

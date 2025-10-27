@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/14 12:49:42 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/15 12:24:45 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#ifndef COLOR_H
+# define COLOR_H
 
-int	main(void)
+typedef enum e_channel
 {
-	t_error		error;
-	t_mlx_core	*core;
+	RED,
+	GREEN,
+	BLUE,
+	ALPHA
+}	t_channel;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
-}
+int	get_color_channel(int color, t_channel channel);
+int	rgb(unsigned char r, unsigned char g, unsigned char b);
+int	rgba(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+int	blend_colors(int base_color, int color);
+
+#endif

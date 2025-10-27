@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   strend.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/16 10:32:19 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/16 10:36:42 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#include "libft.h"
+#include "utils.h"
 
-int	main(void)
+int	strend(const char *str, const char *end)
 {
-	t_error		error;
-	t_mlx_core	*core;
+	const char	*s;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	if (str == NULL || end == NULL)
+		return (0);
+	s = ft_strrchr(str, '.');
+	if (s == NULL)
+		return (0);
+	return (ft_strncmp(s, end, ft_strlen(end) +1) == 0);
 }

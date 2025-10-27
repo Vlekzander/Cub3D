@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/15 11:29:38 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/15 16:26:28 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#ifndef SHAPES_H
+# define SHAPES_H
+# include "image.h"
 
-int	main(void)
+typedef struct s_rect
 {
-	t_error		error;
-	t_mlx_core	*core;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+}	t_rect;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
-}
+typedef struct s_line
+{
+	int	sx;
+	int	sy;
+	int	ex;
+	int	ey;
+}	t_line;
+
+void	draw_rect(t_image *image, t_rect rect, int fill, int color);
+void	draw_line(t_image *image, t_line line, int color);
+
+#endif

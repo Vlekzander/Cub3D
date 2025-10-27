@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/14 12:37:35 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/15 15:49:00 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include "mlx.h"
-#include "mlx_core.h"
+#include <stddef.h>
+#include "color.h"
+#include "image.h"
 
-int	main(void)
+void	put_pixel(t_image *image, int x, int y, int color)
 {
-	t_error		error;
-	t_mlx_core	*core;
+	int	base_color;
 
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	if (image == NULL || x < 0 || y < 0
+		|| x >= image->width || y >= image->height)
+		return ;
+	base_color = image->pixels[y * image->width + x];
+	image->pixels[y * image->width + x] = blend_colors(base_color, color);
 }

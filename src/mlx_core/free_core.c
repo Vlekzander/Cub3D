@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_core.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/17 15:55:22 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 16:07:43 by apierret         ###   ########.fr       */
+/*   Created: 2025/10/13 14:48:39 by apierret          #+#    #+#             */
+/*   Updated: 2025/10/13 14:50:34 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#include <stdlib.h>
+#include "image.h"
 #include "mlx.h"
 #include "mlx_core.h"
 
-int	main(void)
+void	free_core(t_mlx_core *core)
 {
-	t_error		error;
-	t_mlx_core	*core;
-
-	error = init_core(&core, "Cub3D");
-	if (error != ERR_NONE)
-		return (print_error(error), 1);
-	mlx_loop(core->mlx);
-	free_core(core);
-	return (0);
+	if (core == NULL)
+		return ;
+	mlx_destroy_window(core->mlx, core->window);
+	mlx_destroy_image(core->mlx, core->img);
+	mlx_destroy_display(core->mlx);
+	free(core->mlx);
+	free_image(core->screen);
+	free(core);
 }
