@@ -42,6 +42,33 @@ static t_error	read_header(t_tga_header *header, int fd)
 	return (ERR_NONE);
 }
 
+static void	reverse_image(t_image *image, t_tga_header *header)
+{
+	int	i;
+	int	j;
+	int	one;
+	int	two;
+	int	color;
+
+	if (image == NULL || (header->image_descriptor & 0x20) >> 5)
+		return ;
+	i = 0;
+	while (i < image->height / 2)
+	{
+		j = 0;
+		while (j < image->width)
+		{
+			one = i * image->width + j;
+			two = (image->height - 1 - i) * image->width + j;
+			color = image->pixels[one];
+			image->pixels[one] = image->pixels[two];
+			image->pixels[two] = color;
+			j++;
+		}
+		i++;
+	}
+}
+
 static t_error	parse_image(t_image *image, t_tga_header *header, int fd)
 {
 	int				bpp;
@@ -68,7 +95,7 @@ static t_error	parse_image(t_image *image, t_tga_header *header, int fd)
 		image->pixels[i / bpp] = rgba(buf[i + 2], buf[i + 1], buf[i], alpha);
 		i += bpp;
 	}
-	return (free(buf), ERR_NONE);
+	return (free(buf), reverse_image(image, header), ERR_NONE);
 }
 
 t_error	parse_tga(t_image **image, const char *path)
