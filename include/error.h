@@ -20,6 +20,7 @@ typedef enum e_error
 	ERR_ALLOCATION,
 	ERR_FILE_OPEN,
 	ERR_FILE_READ,
+	ERR_FILE_EXTENSION,
 	ERR_FILE_FORMAT
 }	t_error;
 

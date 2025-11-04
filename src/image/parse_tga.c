@@ -108,7 +108,7 @@ t_error	parse_tga(t_image **image, const char *path)
 	if (image == NULL || path == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (!strend(path, ".tga"))
-		return (ERR_FILE_FORMAT);
+		return (ERR_FILE_EXTENSION);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ERR_FILE_OPEN);
