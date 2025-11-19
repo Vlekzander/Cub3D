@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 16:42:16 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/21 10:12:26 by apierret         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:30:12 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	free_image(t_image *image);
 void	put_pixel(t_image *image, int x, int y, int color);
 void	fill_image(t_image *image, int color);
 void	draw_image(t_image *dst, t_image *src, int x, int y);
+t_error	copy_image(t_image **dst, t_image *src);
 t_error	parse_tga(t_image **image, const char *path);
 
 #endif

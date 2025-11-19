@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   copy_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:00:18 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 15:35:31 by apierret         ###   ########.fr       */
+/*   Created: 2025/11/03 20:28:26 by apierret          #+#    #+#             */
+/*   Updated: 2025/11/03 20:31:45 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <stddef.h>
+#include "error.h"
+#include "image.h"
 
-typedef enum e_error
+t_error	copy_image(t_image **dst, t_image *src)
 {
-	ERR_NONE,
-	ERR_IMPLEMENTATION,
-	ERR_ALLOCATION,
-	ERR_FILE_OPEN,
-	ERR_FILE_READ,
-	ERR_FILE_EXTENSION,
-	ERR_FILE_FORMAT
-}	t_error;
+	t_image	*image;
 
-void	print_error(t_error err);
-
-#endif
+	if (dst == NULL || src == NULL)
+		return (ERR_IMPLEMENTATION);
+	image = create_image(src->width, src->height);
+	if (image == NULL)
+		return (ERR_ALLOCATION);
+	draw_image(image, src, 0, 0);
+	return (*dst = image, ERR_NONE);
+}

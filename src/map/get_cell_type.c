@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   get_cell_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:00:18 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 15:35:31 by apierret         ###   ########.fr       */
+/*   Created: 2025/11/03 21:15:07 by apierret          #+#    #+#             */
+/*   Updated: 2025/11/03 21:16:53 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <stddef.h>
+#include "map.h"
 
-typedef enum e_error
+t_cell_type	get_cell_type(t_map *map, int x, int y)
 {
-	ERR_NONE,
-	ERR_IMPLEMENTATION,
-	ERR_ALLOCATION,
-	ERR_FILE_OPEN,
-	ERR_FILE_READ,
-	ERR_FILE_EXTENSION,
-	ERR_FILE_FORMAT
-}	t_error;
-
-void	print_error(t_error err);
-
-#endif
+	if (map == NULL || x < 0 || x >= map->width || y < 0 || y >= map->height)
+		return (OUTSIDE);
+	return (map->grid[y * map->width + x]);
+}

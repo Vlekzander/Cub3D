@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 10:07:55 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/23 16:04:37 by apierret         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:15:58 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_cell_type
 	WALL,
 	SPACE
 }	t_cell_type;
+
 typedef enum e_facing
 {
 	NORTH = 'N',
@@ -45,10 +46,11 @@ typedef struct s_map
 	t_facing		facing;
 }	t_map;
 
-t_error	parse_map(t_map **map, const char *path);
-t_error	parse_map_data(t_map *map, int fd);
-t_error	parse_map_content(t_map *map, int fd);
-t_error	parse_map_check(t_map *map);
-void	free_map(t_map *map);
+t_error		parse_map(t_map **map, const char *path);
+t_error		parse_map_data(t_map *map, int fd);
+t_error		parse_map_content(t_map *map, int fd);
+t_error		parse_map_check(t_map *map);
+void		free_map(t_map *map);
+t_cell_type	get_cell_type(t_map *map, int x, int y);
 
 #endif

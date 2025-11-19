@@ -26,6 +26,8 @@ static char	*get_error_message(t_error err)
 		return ("Open file error");
 	if (err == ERR_FILE_READ)
 		return ("Read file error");
+	if (err == ERR_FILE_EXTENSION)
+		return ("Invalid file extension");
 	if (err == ERR_FILE_FORMAT)
 		return ("Invalid file format");
 	return ("Unknown error");

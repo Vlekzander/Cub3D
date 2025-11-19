@@ -26,7 +26,7 @@ t_error	parse_map(t_map **map, const char *path)
 	if (map == NULL || path == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (!strend(path, ".cub"))
-		return (ERR_FILE_FORMAT);
+		return (ERR_FILE_EXTENSION);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (ERR_FILE_OPEN);
