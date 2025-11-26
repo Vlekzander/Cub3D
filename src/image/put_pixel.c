@@ -16,11 +16,20 @@
 
 void	put_pixel(t_image *image, int x, int y, int color)
 {
-	int	base_color;
+	static int	old_base_color = 0;
+	static int	old_color = 0;
+	static int	blended = 0;
+	int			base_color;
 
 	if (image == NULL || x < 0 || y < 0
 		|| x >= image->width || y >= image->height)
 		return ;
 	base_color = image->pixels[y * image->width + x];
-	image->pixels[y * image->width + x] = blend_colors(base_color, color);
+	if (old_color != color || old_base_color != base_color)
+	{
+		old_color = color;
+		old_base_color = base_color;
+		blended = blend_colors(base_color, color);
+	}
+	image->pixels[y * image->width + x] = blended;
 }
