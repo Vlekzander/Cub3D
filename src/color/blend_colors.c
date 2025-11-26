@@ -14,22 +14,21 @@
 
 int	blend_colors(int base_color, int color)
 {
-	float			alpha;
+	unsigned char	alpha;
+	unsigned char	alpha_inv;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 
-	alpha = (float) get_color_channel(color, ALPHA) / 255;
-	if (alpha == 1.0f)
+	alpha = get_color_channel(color, ALPHA);
+	if (alpha == 255)
 		return (color);
-	r = get_color_channel(color, RED);
-	g = get_color_channel(color, GREEN);
-	b = get_color_channel(color, BLUE);
-	r = (unsigned char)(r * alpha + get_color_channel(base_color, RED)
-			* (1.0f - alpha) + 0.5f);
-	g = (unsigned char)(g * alpha + get_color_channel(base_color, GREEN)
-			* (1.0f - alpha) + 0.5f);
-	b = (unsigned char)(b * alpha + get_color_channel(base_color, BLUE)
-			* (1.0f - alpha) + 0.5f);
+	alpha_inv = 255 - alpha;
+	r = ((get_color_channel(color, RED) * alpha)
+			+ (get_color_channel(base_color, RED) * (alpha_inv))) >> 8;
+	g = ((get_color_channel(color, GREEN) * alpha)
+			+ (get_color_channel(base_color, GREEN) * (alpha_inv))) >> 8;
+	b = ((get_color_channel(color, BLUE) * alpha)
+			+ (get_color_channel(base_color, BLUE) * (alpha_inv))) >> 8;
 	return (rgb(r, g, b));
 }
