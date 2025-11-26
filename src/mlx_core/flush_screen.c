@@ -47,6 +47,6 @@ t_error	flush_screen(t_mlx_core *core)
 		i++;
 	}
 	mlx_put_image_to_window(core->mlx, core->window, core->img, 0, 0);
-	fill_image(core->screen, 0);
+	fill_image(core->screen, 0xFF000000);
 	return (ERR_NONE);
 }
