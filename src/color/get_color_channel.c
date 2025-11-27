@@ -14,13 +14,5 @@
 
 int	get_color_channel(int color, t_channel channel)
 {
-	if (channel == ALPHA)
-		return ((color >> 24) & 0xFF);
-	if (channel == RED)
-		return ((color >> 16) & 0xFF);
-	if (channel == GREEN)
-		return ((color >> 8) & 0xFF);
-	if (channel == BLUE)
-		return (color & 0xFF);
-	return (0);
+	return ((color >> channel * 8) & 0xFF);
 }
