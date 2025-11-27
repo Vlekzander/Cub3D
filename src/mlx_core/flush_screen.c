@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 18:50:48 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 12:35:28 by apierret         ###   ########.fr       */
+/*   Updated: 2025/11/28 00:11:54 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ static void	put_pixel_mlx(void *image, int x, int y, int color)
 	*(int *)(data + (y * size_line + x * (bpp / 8))) = color;
 }
 
+static void	clear_screen(t_image *image)
+{
+	int	i;
+	int	size;
+
+	if (image == NULL)
+		return ;
+	size = image->width * image->height;
+	i = 0;
+	while (i < size)
+	{
+		image->pixels[i] = 0;
+		i++;
+	}
+}
+
 t_error	flush_screen(t_mlx_core *core)
 {
 	int	i;
@@ -47,6 +63,6 @@ t_error	flush_screen(t_mlx_core *core)
 		i++;
 	}
 	mlx_put_image_to_window(core->mlx, core->window, core->img, 0, 0);
-	fill_image(core->screen, 0xFF000000);
+	clear_screen(core->screen);
 	return (ERR_NONE);
 }
