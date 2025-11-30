@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:00:09 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/13 15:13:04 by apierret         ###   ########.fr       */
+/*   Updated: 2025/11/30 14:52:26 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ t_error		init_core(t_mlx_core **core, char *title);
 void		free_core(t_mlx_core *core);
 int			key_handler(int keycode, t_mlx_core *core);
 int			update(t_mlx_core *core);
-t_error		flush_screen(t_mlx_core *core);
 
 #endif
