@@ -15,9 +15,9 @@
 
 typedef enum e_channel
 {
-	RED,
-	GREEN,
 	BLUE,
+	GREEN,
+	RED,
 	ALPHA
 }	t_channel;
 
