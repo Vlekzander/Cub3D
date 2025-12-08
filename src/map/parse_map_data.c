@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 12:26:09 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/21 10:16:16 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:59:39 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,15 @@
 static void	prepare_line(char *str)
 {
 	int	i;
-	int	s;
+	int	len;
 
 	if (str == NULL)
 		return ;
-	s = 0;
 	i = 0;
 	while (str[i] != '\0' && str[i] == ' ')
 		i++;
-	while (str[i] != '\0')
-	{
-		if (str[i] == ' ' && s)
-			ft_memmove(str + i, str + i + 1, ft_strlen(str + i) + 1);
-		else if (str[i] == ' ' && !s)
-		{
-			s = 1;
-			i++;
-		}
-		else
-			i++;
-	}
+	len = ft_strlen(str + i);
+	ft_memmove(str, str + i, len + 1);
 }
 
 static t_error	parse_color(int *color_ptr, char *line)
@@ -51,10 +40,13 @@ static t_error	parse_color(int *color_ptr, char *line)
 
 	if (color_ptr == NULL || line == NULL)
 		return (ERR_IMPLEMENTATION);
+	if (strend(line, ","))
+		return (ERR_FILE_FORMAT);
 	strs = ft_split(line, ',');
 	if (strs == NULL)
 		return (ERR_IMPLEMENTATION);
-	if (len_ddarray((void **) strs) != 3)
+	if (len_ddarray((void **) strs) != 3 || !str_isdigit(strs[0])
+		|| !str_isdigit(strs[1]) || !str_isdigit(strs[2]))
 		return (free_ddarray((void **) strs), ERR_FILE_FORMAT);
 	r = ft_atoi(strs[0]);
 	g = ft_atoi(strs[1]);

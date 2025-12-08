@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 12:26:04 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/21 10:22:42 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/08 12:25:05 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ static t_error	fill_grid_line(t_map *map, int y, char *str)
 		if (ft_strchr(" 01NSEW", str[i]) == NULL
 			|| (ft_strchr("NSEW", str[i]) != NULL && map->facing != 0))
 			return (ERR_FILE_FORMAT);
-		if (str[i] == '1')
+		if (str[i] == ' ')
+			map->grid[y * map->width + i] = OUTSIDE;
+		else if (str[i] == '1')
 			map->grid[y * map->width + i] = WALL;
 		else if (str[i] == '0' || ft_strchr("NSEW", str[i]) != NULL)
 			map->grid[y * map->width + i] = SPACE;
-		else if (ft_strchr("NSEW", str[i]) != NULL)
+		if (ft_strchr("NSEW", str[i]) != NULL)
 		{
 			map->facing = str[i];
 			map->spawn_x = i;
