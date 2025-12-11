@@ -16,6 +16,34 @@
 #include "libft.h"
 #include "map.h"
 
+static t_error	check_lines(t_map *map)
+{
+	int	i;
+	int	j;
+	int	check;
+
+	if (map == NULL)
+		return (ERR_IMPLEMENTATION);
+	i = 0;
+	while (i < map->height)
+	{
+		check = 0;
+		j = 0;
+		while (j < map->width)
+		{
+			if (check == 0 && get_cell_type(map, j, i) != OUTSIDE)
+				check = 1;
+			else if (check == 1 && get_cell_type(map, j, i) == OUTSIDE)
+				check = 2;
+			else if (check == 2 && get_cell_type(map, j, i) != OUTSIDE)
+				return (ERR_FILE_FORMAT);
+			j++;
+		}
+		i++;
+	}
+	return (ERR_NONE);
+}
+
 static int	next_space(t_map *map, unsigned char *map_check, int *x, int *y)
 {
 	int	i;
@@ -70,6 +98,9 @@ t_error	parse_map_check(t_map *map)
 
 	if (map == NULL)
 		return (ERR_IMPLEMENTATION);
+	error = check_lines(map);
+	if (error != ERR_NONE)
+		return (error);
 	map_check = ft_calloc(map->width * map->height, sizeof(unsigned char));
 	if (map_check == NULL)
 		return (ERR_ALLOCATION);
