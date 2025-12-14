@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:56:20 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 20:51:27 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/14 23:15:51 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@
 #include "shapes.h"
 #include "utils.h"
 #include "vec.h"
-
-static void	clear_screen(t_image *image)
-{
-	int	i;
-	int	size;
-
-	if (image == NULL)
-		return ;
-	size = image->width * image->height;
-	i = 0;
-	while (i < size)
-	{
-		image->pixels[i] = 0;
-		i++;
-	}
-}
 
 void	logic_movements(t_game *game)
 {
@@ -91,7 +75,6 @@ int	update(t_mlx_core *core)
 	if (core == NULL)
 		return (0);
 	logic(core->game);
-	clear_screen(core->screen);
 	draw_rect(core->screen, (t_rect){0, 0, WIDTH, HEIGHT / 2}, 1,
 		core->game->map->color_ceil);
 	draw_rect(core->screen, (t_rect){0, HEIGHT / 2, WIDTH, HEIGHT}, 1,
