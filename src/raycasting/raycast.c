@@ -30,9 +30,8 @@ void	raycast(t_mlx_core *core)
 			+ core->game->camera_plane.x * camera_x;
 		dir.y = core->game->direction.y
 			+ core->game->camera_plane.y * camera_x;
-		dda(&hit, core->game->map,
-				(t_vec2f){core->game->player_pos.x,
-				core->game->player_pos.y}, dir);
+		dda(&hit, core->game->map, (t_vec2f){core->game->player_pos.x,
+			core->game->player_pos.y}, dir);
 		draw_stripe(core, &hit, dir, x);
 		x++;
 	}

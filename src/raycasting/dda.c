@@ -26,7 +26,7 @@ static void	perf_dda(t_hit_result *res, t_dda_ctx *ctx, t_map *map)
 {
 	if (res == NULL || ctx == NULL || map == NULL)
 		return ;
-	while (1)
+	while (res != NULL && ctx != NULL && map != NULL)
 	{
 		if (ctx->side.x < ctx->side.y)
 		{
@@ -40,10 +40,7 @@ static void	perf_dda(t_hit_result *res, t_dda_ctx *ctx, t_map *map)
 			res->pos.y += ctx->step.y;
 			res->side = ctx->step.y + 1;
 		}
-		if (res->pos.x < 0 || res->pos.x > map->width
-			|| res->pos.y < 0 || res->pos.y > map->height)
-			return ;
-		if (map->grid[res->pos.y * map->width + res->pos.x] == WALL)
+		if (get_cell_type(map, res->pos.x, res->pos.y) == WALL)
 		{
 			res->dist.x = ctx->side.x - ctx->delta.x;
 			res->dist.y = ctx->side.y - ctx->delta.y;

@@ -21,7 +21,6 @@ static void	prepare_line(char *str)
 {
 	int		i;
 	int		j;
-	int		len;
 	int		flag;
 
 	if (str == NULL)
@@ -29,10 +28,8 @@ static void	prepare_line(char *str)
 	i = 0;
 	while (str[i] != '\0' && str[i] == ' ')
 		i++;
-	len = ft_strlen(str + i);
-	ft_memmove(str, str + i, len + 1);
 	flag = 0;
-	j = 0;
+	j = i;
 	i = 0;
 	while (str[i] != '\0')
 	{

@@ -62,8 +62,8 @@ static int	find_image_x(t_image *image, float wallX, int side)
 	return (image_x);
 }
 
-void	draw_stripe(
-		t_mlx_core *core, t_hit_result *hit, t_vec2f dir, int stripe_x)
+void	draw_stripe(t_mlx_core *core, t_hit_result *hit, t_vec2f dir,
+			int stripe_x)
 {
 	float		wall_x;
 	t_stripe	stripe;
@@ -75,19 +75,17 @@ void	draw_stripe(
 	{
 		wall_x = core->game->player_pos.y + hit->dist.x * dir.y;
 		stripe = make_stripe(hit->dist.x, stripe_x);
+		image = core->game->map->west;
 		if (hit->side == 1)
 			image = core->game->map->east;
-		else
-			image = core->game->map->west;
 	}
 	else
 	{
 		wall_x = core->game->player_pos.x + hit->dist.y * dir.x;
 		stripe = make_stripe(hit->dist.y, stripe_x);
+		image = core->game->map->south;
 		if (hit->side == 0)
 			image = core->game->map->north;
-		else
-			image = core->game->map->south;
 	}
 	wall_x -= floorf(wall_x);
 	draw_stripe_to_screen(core, image,
