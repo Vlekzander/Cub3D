@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:12:38 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 15:55:52 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:33:06 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	setup_hooks(t_mlx_core *core)
 	if (core == NULL)
 		return ;
 	mlx_hook(core->window, 17, 0L, mlx_loop_end, core->mlx);
-	mlx_key_hook(core->window, key_handler, core);
+	mlx_hook(core->window, 2, 1L << 0, key_down_handler, core);
+	mlx_hook(core->window, 3, 1L << 1, key_up_handler, core);
 	mlx_loop_hook(core->mlx, update, core);
 }
 
