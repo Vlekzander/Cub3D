@@ -12,8 +12,6 @@
 
 #include <stddef.h>
 #include "game.h"
-#include "image.h"
-#include "map.h"
 #include "mlx.h"
 #include "mlx_core.h"
 #include "raycast.h"
@@ -55,30 +53,25 @@ void	logic_movements(t_game *game)
 				vec2f_div(vec2f_rot(game->direction, rad(90)), GAME_SPEED));
 }
 
-void	logic(t_game *game)
+static void	logic(t_game *game)
 {
 	long long	time;
-	long long	delta;
+	float		rotation;
 
 	time = get_time();
-	delta = time - game->last_time;
-	if (game == NULL || delta < 20)
+	if (game == NULL || time - game->last_time < 20)
 		return ;
 	game->last_time = time;
 	logic_movements(game);
-	if (game->view_left)
+	if (game->view_left || game->view_right)
 	{
-		game->direction = vec2f_rot(game->direction,
-				rad(-ROT_SPEED) / GAME_SPEED);
-		game->camera_plane = vec2f_rot(game->camera_plane,
-				rad(-ROT_SPEED / GAME_SPEED));
-	}
-	if (game->view_right)
-	{
-		game->direction = vec2f_rot(game->direction,
-				rad(ROT_SPEED) / GAME_SPEED);
-		game->camera_plane = vec2f_rot(game->camera_plane,
-				rad(ROT_SPEED / GAME_SPEED));
+		rotation = 0;
+		if (game->view_left)
+			rotation += rad(-ROT_SPEED) / GAME_SPEED;
+		if (game->view_right)
+			rotation += rad(ROT_SPEED) / GAME_SPEED;
+		game->direction = vec2f_rot(game->direction, rotation);
+		game->camera_plane = vec2f_rot(game->camera_plane, rotation);
 	}
 }
 
