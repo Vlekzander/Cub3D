@@ -6,13 +6,12 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:12:38 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 15:37:19 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/14 15:55:52 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "error.h"
-#include "game.h"
 #include "image.h"
 #include "libft.h"
 #include "mlx.h"
@@ -64,9 +63,6 @@ t_error	init_core(t_mlx_core **core, char *title)
 	if (mlx_core->img == NULL)
 		return (free_core(mlx_core), ERR_ALLOCATION);
 	error = init_screen(mlx_core);
-	if (error != ERR_NONE)
-		return (free_core(mlx_core), error);
-	error = init_game(&mlx_core->game);
 	if (error != ERR_NONE)
 		return (free_core(mlx_core), error);
 	setup_hooks(mlx_core);
