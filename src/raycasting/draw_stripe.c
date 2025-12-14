@@ -6,11 +6,12 @@
 /*   By: emarlier <emarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 00:33:34 by emarlier          #+#    #+#             */
-/*   Updated: 2025/12/14 20:57:14 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/14 22:47:10 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stddef.h>
 #include "mlx_core.h"
 #include "raycast.h"
 #include "image.h"
@@ -36,6 +37,8 @@ static void	draw_stripe_to_screen(
 	float	image_y_ratio;
 	int		y;
 
+	if (core == NULL || image == NULL)
+		return ;
 	image_y_ratio = (float)image->height / (float)stripe.height;
 	i = stripe.start;
 	while (i < stripe.end)
@@ -51,6 +54,8 @@ static int	find_image_x(t_image *image, float wallX, int side)
 {
 	int	image_x;
 
+	if (image == NULL)
+		return (0);
 	image_x = wallX * (float)image->width;
 	if (side % 2)
 		image_x = image->width - image_x - 1;
@@ -64,6 +69,8 @@ void	draw_stripe(
 	t_stripe	stripe;
 	t_image		*image;
 
+	if (core == NULL || hit == NULL)
+		return ;
 	if (hit->side % 2)
 	{
 		wall_x = core->game->player_pos.y + hit->dist.x * dir.y;

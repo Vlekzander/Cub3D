@@ -6,13 +6,12 @@
 /*   By: emarlier <emarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 02:52:31 by emarlier          #+#    #+#             */
-/*   Updated: 2025/12/07 18:09:09 by emarlier         ###   ########.fr       */
+/*   Updated: 2025/12/14 22:47:08 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-
-#include "raycast.h"
+#include "vec.h"
 
 t_vec2f	vec2f_add(t_vec2f a, t_vec2f b)
 {
