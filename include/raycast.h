@@ -44,6 +44,6 @@ typedef struct s_stripe
 void	draw_stripe(
 			t_mlx_core *core, t_hit_result *hit, t_vec2f dir, int stripe_x);
 t_error	dda(t_hit_result *res, t_map *map, t_vec2f pos, t_vec2f dir);
-t_error	raycast(t_mlx_core *core, t_map *map);
+t_error	raycast(t_mlx_core *core);
 
 #endif

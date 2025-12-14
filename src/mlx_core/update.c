@@ -12,6 +12,7 @@
 
 #include <stddef.h>
 #include "game.h"
+#include "map.h"
 #include "mlx.h"
 #include "mlx_core.h"
 #include "raycast.h"
@@ -37,8 +38,12 @@ static void	clear_screen(t_image *image)
 
 void	logic_movements(t_game *game)
 {
+	t_vec2f	before;
+
 	if (game == NULL)
 		return ;
+	before.x = game->player_pos.x;
+	before.y = game->player_pos.y;
 	if (game->forward)
 		game->player_pos = vec2f_add(game->player_pos,
 				vec2f_div(game->direction, GAME_SPEED));
@@ -51,6 +56,12 @@ void	logic_movements(t_game *game)
 	if (game->right)
 		game->player_pos = vec2f_add(game->player_pos,
 				vec2f_div(vec2f_rot(game->direction, rad(90)), GAME_SPEED));
+	if (get_cell_type(game->map,
+			game->player_pos.x, game->player_pos.y) == WALL)
+	{
+		game->player_pos.x = before.x;
+		game->player_pos.y = before.y;
+	}
 }
 
 static void	logic(t_game *game)
@@ -85,7 +96,7 @@ int	update(t_mlx_core *core)
 		core->game->map->color_ceil);
 	draw_rect(core->screen, (t_rect){0, HEIGHT / 2, WIDTH, HEIGHT}, 1,
 		core->game->map->color_floor);
-	raycast(core, core->game->map);
+	raycast(core);
 	mlx_put_image_to_window(core->mlx, core->window, core->img, 0, 0);
 	return (0);
 }
