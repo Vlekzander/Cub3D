@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   rad.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
+/*   By: apierret <apierret@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:00:18 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 18:54:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/12/14 20:49:38 by apierret          #+#    #+#             */
+/*   Updated: 2025/12/14 20:52:12 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <math.h>
+#include "utils.h"
 
-typedef enum e_error
+float	rad(float deg)
 {
-	ERR_NONE,
-	ERR_IMPLEMENTATION,
-	ERR_ALLOCATION,
-	ERR_FILE_OPEN,
-	ERR_FILE_READ,
-	ERR_FILE_EXTENSION,
-	ERR_FILE_FORMAT,
-	ERR_OOB
-}	t_error;
-
-void	print_error(t_error err);
-
-#endif
+	return (deg * M_PI / 180);
+}

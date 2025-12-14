@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
+/*   By: apierret <apierret@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:00:18 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 18:54:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/12/14 20:50:20 by apierret          #+#    #+#             */
+/*   Updated: 2025/12/14 20:51:14 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <sys/time.h>
+#include <stddef.h>
+#include "utils.h"
 
-typedef enum e_error
+long long	get_time(void)
 {
-	ERR_NONE,
-	ERR_IMPLEMENTATION,
-	ERR_ALLOCATION,
-	ERR_FILE_OPEN,
-	ERR_FILE_READ,
-	ERR_FILE_EXTENSION,
-	ERR_FILE_FORMAT,
-	ERR_OOB
-}	t_error;
+	struct timeval	time;
 
-void	print_error(t_error err);
-
-#endif
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}

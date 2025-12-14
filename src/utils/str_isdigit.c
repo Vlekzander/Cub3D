@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   str_isdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
+/*   By: apierret <apierret@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 15:00:18 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 18:54:13 by apierret         ###   ########.fr       */
+/*   Created: 2025/12/08 12:03:05 by apierret          #+#    #+#             */
+/*   Updated: 2025/12/08 12:05:44 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "libft.h"
+#include "utils.h"
 
-typedef enum e_error
+int	str_isdigit(const char *str)
 {
-	ERR_NONE,
-	ERR_IMPLEMENTATION,
-	ERR_ALLOCATION,
-	ERR_FILE_OPEN,
-	ERR_FILE_READ,
-	ERR_FILE_EXTENSION,
-	ERR_FILE_FORMAT,
-	ERR_OOB
-}	t_error;
+	size_t	i;
 
-void	print_error(t_error err);
-
-#endif
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
