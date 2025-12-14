@@ -6,7 +6,7 @@
 /*   By: emarlier <emarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 00:33:34 by emarlier          #+#    #+#             */
-/*   Updated: 2025/12/14 18:56:33 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/14 20:57:14 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static t_stripe	make_stripe(float dist, int stripe_x)
 
 	stripe.height = (int)(HEIGHT / dist);
 	stripe.start = HEIGHT / 2 - stripe.height / 2;
-	if (stripe.start < 0)
-		stripe.start = 0;
 	stripe.end = HEIGHT / 2 + stripe.height / 2;
 	if (stripe.end >= HEIGHT)
 		stripe.end = HEIGHT - 1;
