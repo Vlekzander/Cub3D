@@ -19,8 +19,10 @@
 
 static void	prepare_line(char *str)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		j;
+	int		len;
+	int		flag;
 
 	if (str == NULL)
 		return ;
@@ -29,6 +31,21 @@ static void	prepare_line(char *str)
 		i++;
 	len = ft_strlen(str + i);
 	ft_memmove(str, str + i, len + 1);
+	flag = 0;
+	j = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ' && !flag)
+		{
+			str[j++] = ' ';
+			flag = 1;
+		}
+		else if (str[i] != ' ')
+			str[j++] = str[i];
+		i++;
+	}
+	str[j] = '\0';
 }
 
 static t_error	parse_color(int *color_ptr, char *line)
