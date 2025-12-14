@@ -12,8 +12,6 @@
 
 #ifndef RAYCAST_H
 # define RAYCAST_H
-
-# include "error.h"
 # include "mlx_core.h"
 # include "map.h"
 # include "vec.h"
@@ -43,7 +41,7 @@ typedef struct s_stripe
 
 void	draw_stripe(
 			t_mlx_core *core, t_hit_result *hit, t_vec2f dir, int stripe_x);
-t_error	dda(t_hit_result *res, t_map *map, t_vec2f pos, t_vec2f dir);
-t_error	raycast(t_mlx_core *core);
+void	dda(t_hit_result *res, t_map *map, t_vec2f pos, t_vec2f dir);
+void	raycast(t_mlx_core *core);
 
 #endif

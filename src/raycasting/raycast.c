@@ -12,18 +12,16 @@
 
 #include <stddef.h>
 #include "raycast.h"
-#include "error.h"
 
-t_error	raycast(t_mlx_core *core)
+void	raycast(t_mlx_core *core)
 {
 	t_vec2f			dir;
 	float			camera_x;
 	t_hit_result	hit;
 	int				x;
-	t_error			e;
 
 	if (core == NULL)
-		return (ERR_IMPLEMENTATION);
+		return ;
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -32,13 +30,10 @@ t_error	raycast(t_mlx_core *core)
 			+ core->game->camera_plane.x * camera_x;
 		dir.y = core->game->direction.y
 			+ core->game->camera_plane.y * camera_x;
-		e = dda(&hit, core->game->map,
+		dda(&hit, core->game->map,
 				(t_vec2f){core->game->player_pos.x,
 				core->game->player_pos.y}, dir);
-		if (e)
-			return (e);
 		draw_stripe(core, &hit, dir, x);
 		x++;
 	}
-	return (ERR_NONE);
 }
