@@ -36,7 +36,7 @@ static t_error	check_lines(t_map *map)
 			else if (check == 1 && get_cell_type(map, j, i) == OUTSIDE)
 				check = 2;
 			else if (check == 2 && get_cell_type(map, j, i) != OUTSIDE)
-				return (ERR_FILE_FORMAT);
+				return (ERR_MAP_SPACE);
 			j++;
 		}
 		i++;
@@ -72,20 +72,20 @@ static t_error	flood_fill(t_map *map, unsigned char *map_check, int x, int y)
 	if (map == NULL || map_check == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (x < 0 || x >= map->width || y < 0 || y >= map->height)
-		return (ERR_FILE_FORMAT);
+		return (ERR_MAP_NOT_CLOSED);
 	if (get_cell_type(map, x, y) == OUTSIDE)
-		return (ERR_FILE_FORMAT);
+		return (ERR_MAP_NOT_CLOSED);
 	if (get_cell_type(map, x, y) == WALL || map_check[y * map->width + x] == 1)
 		return (ERR_NONE);
 	map_check[y * map->width + x] = 1;
-	if (flood_fill(map, map_check, x -1, y) == ERR_FILE_FORMAT)
-		return (ERR_FILE_FORMAT);
-	if (flood_fill(map, map_check, x +1, y) == ERR_FILE_FORMAT)
-		return (ERR_FILE_FORMAT);
-	if (flood_fill(map, map_check, x, y -1) == ERR_FILE_FORMAT)
-		return (ERR_FILE_FORMAT);
-	if (flood_fill(map, map_check, x, y +1) == ERR_FILE_FORMAT)
-		return (ERR_FILE_FORMAT);
+	if (flood_fill(map, map_check, x -1, y))
+		return (ERR_MAP_NOT_CLOSED);
+	if (flood_fill(map, map_check, x +1, y))
+		return (ERR_MAP_NOT_CLOSED);
+	if (flood_fill(map, map_check, x, y -1))
+		return (ERR_MAP_NOT_CLOSED);
+	if (flood_fill(map, map_check, x, y +1))
+		return (ERR_MAP_NOT_CLOSED);
 	return (ERR_NONE);
 }
 

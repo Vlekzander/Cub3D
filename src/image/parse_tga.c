@@ -26,7 +26,7 @@ static t_error	read_header(t_tga_header *header, int fd)
 	if (header == NULL || fd == -1)
 		return (ERR_IMPLEMENTATION);
 	if (read(fd, buffer, 18) != 18)
-		return (ERR_FILE_READ);
+		return (ERR_TGA_HEADER);
 	header->id_length = buffer[0];
 	header->color_map_type = buffer[1];
 	header->image_type = buffer[2];
@@ -85,7 +85,7 @@ static t_error	parse_image(t_image *image, t_tga_header *header, int fd)
 	if (buf == NULL)
 		return (ERR_ALLOCATION);
 	if (read(fd, buf, len) != len)
-		return (free(buf), ERR_FILE_READ);
+		return (free(buf), ERR_TGA_CONTENT);
 	i = 0;
 	while (i < len)
 	{
@@ -116,7 +116,7 @@ t_error	parse_tga(t_image **image, const char *path)
 	if (error != ERR_NONE)
 		return (close(fd), error);
 	if (header.image_type != 2)
-		return (close(fd), ERR_FILE_FORMAT);
+		return (close(fd), ERR_TGA_FORMAT);
 	img = create_image(header.width, header.height);
 	if (img == NULL)
 		return (close(fd), ERR_ALLOCATION);

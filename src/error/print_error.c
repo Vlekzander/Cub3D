@@ -14,6 +14,21 @@
 #include "error.h"
 #include "libft.h"
 
+static char	*get_error_message_two(t_error err)
+{
+	if (err == ERR_MAP_DATA_COLOR)
+		return ("Color component out of range [0-255]");
+	if (err == ERR_MAP_SPACE)
+		return ("The map must be in a single block");
+	if (err == ERR_MAP_INVALID_CHAR)
+		return ("The map contains an invalid character");
+	if (err == ERR_MAP_SPAWN)
+		return ("The map must contain only one spawn point");
+	if (err == ERR_MAP_NOT_CLOSED)
+		return ("The map must be surrounded by walls");
+	return ("Unknown error");
+}
+
 static char	*get_error_message(t_error err)
 {
 	if (err == ERR_NONE)
@@ -30,7 +45,17 @@ static char	*get_error_message(t_error err)
 		return ("Invalid file extension");
 	if (err == ERR_FILE_FORMAT)
 		return ("Invalid file format");
-	return ("Unknown error");
+	if (err == ERR_TGA_HEADER)
+		return ("Failed to read image header");
+	if (err == ERR_TGA_FORMAT)
+		return ("TGA Format not supported");
+	if (err == ERR_TGA_CONTENT)
+		return ("Failed to read image content");
+	if (err == ERR_MAP_DATA_FORMAT)
+		return ("Invalid map data format");
+	if (err == ERR_MAP_DATA_UNKNOWN)
+		return ("Unknown map data");
+	return (get_error_message_two(err));
 }
 
 void	print_error(t_error err)
