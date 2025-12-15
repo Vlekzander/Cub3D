@@ -29,8 +29,7 @@ static void	prepare_line(char *str)
 	while (str[i] != '\0' && str[i] == ' ')
 		i++;
 	flag = 0;
-	j = i;
-	i = 0;
+	j = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == ' ' && !flag)
