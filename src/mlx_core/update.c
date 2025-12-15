@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:56:20 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 23:15:51 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 21:27:32 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	update(t_mlx_core *core)
 	draw_rect(core->screen, (t_rect){0, HEIGHT / 2, WIDTH, HEIGHT}, 1,
 		core->game->map->color_floor);
 	raycast(core);
+	draw_minimap(core->game, core->screen);
 	mlx_put_image_to_window(core->mlx, core->window, core->img, 0, 0);
 	return (0);
 }
