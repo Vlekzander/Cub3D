@@ -38,7 +38,7 @@ int	check_colide(t_game *game)
 	return (0);
 }
 
-void	logic_movements(t_game *game)
+void	logic_movements(t_game *game, float delta)
 {
 	t_vec2f	before;
 
@@ -48,16 +48,16 @@ void	logic_movements(t_game *game)
 	before.y = game->player_pos.y;
 	if (game->forward)
 		game->player_pos = vec2f_add(game->player_pos,
-				vec2f_div(game->direction, GAME_SPEED));
+				vec2f_div(vec2f_rot(game->direction, rad(0)), delta));
 	if (game->backward)
 		game->player_pos = vec2f_add(game->player_pos,
-				vec2f_div(vec2f_rot(game->direction, rad(180)), GAME_SPEED));
+				vec2f_div(vec2f_rot(game->direction, rad(180)), delta));
 	if (game->left)
 		game->player_pos = vec2f_add(game->player_pos,
-				vec2f_div(vec2f_rot(game->direction, rad(270)), GAME_SPEED));
+				vec2f_div(vec2f_rot(game->direction, rad(270)), delta));
 	if (game->right)
 		game->player_pos = vec2f_add(game->player_pos,
-				vec2f_div(vec2f_rot(game->direction, rad(90)), GAME_SPEED));
+				vec2f_div(vec2f_rot(game->direction, rad(90)), delta));
 	if (check_colide(game))
 	{
 		game->player_pos.x = before.x;
@@ -68,20 +68,22 @@ void	logic_movements(t_game *game)
 static void	logic(t_game *game)
 {
 	long long	time;
+	float		delta;
 	float		rotation;
 
 	time = get_time();
-	if (game == NULL || time - game->last_time < 20)
+	delta = time - game->last_time;
+	if (game == NULL || delta < 20.f)
 		return ;
 	game->last_time = time;
-	logic_movements(game);
+	logic_movements(game, delta);
 	if (game->view_left || game->view_right)
 	{
 		rotation = 0;
 		if (game->view_left)
-			rotation += rad(-ROT_SPEED) / GAME_SPEED;
+			rotation += rad(-ROT_SPEED) / delta;
 		if (game->view_right)
-			rotation += rad(ROT_SPEED) / GAME_SPEED;
+			rotation += rad(ROT_SPEED) / delta;
 		game->direction = vec2f_rot(game->direction, rotation);
 		game->camera_plane = vec2f_rot(game->camera_plane, rotation);
 	}

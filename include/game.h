@@ -12,7 +12,6 @@
 
 #ifndef GAME_H
 # define GAME_H
-# define GAME_SPEED 30.f
 # define ROT_SPEED 90
 # define COLIDE 0.1f
 # include "error.h"
