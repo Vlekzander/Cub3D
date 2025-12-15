@@ -20,6 +20,24 @@
 #include "utils.h"
 #include "vec.h"
 
+int	check_colide(t_game *game)
+{
+	t_vec2f	pos;
+
+	if (game == NULL)
+		return (0);
+	pos = game->player_pos;
+	if (get_cell_type(game->map, pos.x + COLIDE, pos.y + COLIDE) == WALL)
+		return (1);
+	if (get_cell_type(game->map, pos.x - COLIDE, pos.y - COLIDE) == WALL)
+		return (1);
+	if (get_cell_type(game->map, pos.x + COLIDE, pos.y - COLIDE) == WALL)
+		return (1);
+	if (get_cell_type(game->map, pos.x - COLIDE, pos.y + COLIDE) == WALL)
+		return (1);
+	return (0);
+}
+
 void	logic_movements(t_game *game)
 {
 	t_vec2f	before;
@@ -40,8 +58,7 @@ void	logic_movements(t_game *game)
 	if (game->right)
 		game->player_pos = vec2f_add(game->player_pos,
 				vec2f_div(vec2f_rot(game->direction, rad(90)), GAME_SPEED));
-	if (get_cell_type(game->map,
-			game->player_pos.x, game->player_pos.y) == WALL)
+	if (check_colide(game))
 	{
 		game->player_pos.x = before.x;
 		game->player_pos.y = before.y;
