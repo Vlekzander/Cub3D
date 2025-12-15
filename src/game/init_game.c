@@ -19,22 +19,22 @@ void	set_player_direction(t_game *game)
 {
 	if (game == NULL)
 		return ;
-	game->direction = (t_vec2f) {0, -1};
-	game->camera_plane = (t_vec2f) {0.88888888f, 0};
-	if(game->map->facing == SOUTH)
+	game->direction = (t_vec2f){0, -1};
+	game->camera_plane = (t_vec2f){0.88888888f, 0};
+	if (game->map->facing == SOUTH)
 	{
-		game->direction = (t_vec2f) {0, 1};
-		game->camera_plane = (t_vec2f) {-0.88888888f, 0};
+		game->direction = (t_vec2f){0, 1};
+		game->camera_plane = (t_vec2f){-0.88888888f, 0};
 	}
-	else if(game->map->facing == EAST)
+	else if (game->map->facing == EAST)
 	{
-		game->direction = (t_vec2f) {1, 0};
-		game->camera_plane = (t_vec2f) {0, 0.88888888f};
+		game->direction = (t_vec2f){1, 0};
+		game->camera_plane = (t_vec2f){0, 0.88888888f};
 	}
-	else if(game->map->facing == WEST)
+	else if (game->map->facing == WEST)
 	{
-		game->direction = (t_vec2f) {-1, 0};
-		game->camera_plane = (t_vec2f) {0, -0.88888888f};
+		game->direction = (t_vec2f){-1, 0};
+		game->camera_plane = (t_vec2f){0, -0.88888888f};
 	}
 }
 

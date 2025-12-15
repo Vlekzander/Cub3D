@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:00:09 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 17:40:46 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 21:30:44 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define KEY_ESC 65307
-# define KEY_W 'w'
-# define KEY_S 's'
-# define KEY_A 'a'
-# define KEY_D 'd'
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # include "error.h"

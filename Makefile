@@ -8,7 +8,7 @@ MLX_LIB= $(MLX_DIR)/libmlx.a
 SOURCES = src/main.c	\
 		  src/color/blend_colors.c src/color/get_color_channel.c src/color/rgb.c src/color/rgba.c	\
 		  src/error/print_error.c	\
-		  src/game/free_game.c src/game/init_game.c	\
+		  src/game/draw_minimap.c src/game/free_game.c src/game/init_game.c	\
 		  src/image/copy_image.c src/image/create_image.c src/image/draw_image.c src/image/fill_image.c src/image/free_image.c src/image/parse_tga.c src/image/put_pixel.c	\
 		  src/map/free_map.c src/map/get_cell_type.c src/map/parse_map.c src/map/parse_map_check.c src/map/parse_map_content.c src/map/parse_map_data.c	\
 		  src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_down_handler.c src/mlx_core/key_up_handler.c src/mlx_core/update.c	\
