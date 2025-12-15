@@ -75,9 +75,9 @@ void	draw_stripe(t_mlx_core *core, t_hit_result *hit, t_vec2f dir,
 	{
 		wall_x = core->game->player_pos.y + hit->dist.x * dir.y;
 		stripe = make_stripe(hit->dist.x, stripe_x);
-		image = core->game->map->west;
+		image = core->game->map->east;
 		if (hit->side == 1)
-			image = core->game->map->east;
+			image = core->game->map->west;
 	}
 	else
 	{
