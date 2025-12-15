@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 16:03:50 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/15 15:32:23 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:03:10 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ t_error	parse_map_check(t_map *map)
 
 	if (map == NULL)
 		return (ERR_IMPLEMENTATION);
+	if (map->spawn_x == -1)
+		return (ERR_MAP_SPAWN);
 	map_check = ft_calloc(map->width * map->height, sizeof(unsigned char));
 	if (map_check == NULL)
 		return (ERR_ALLOCATION);

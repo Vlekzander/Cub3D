@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 14:06:42 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/15 15:01:45 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:03:01 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_error	parse_map(t_map **map, const char *path)
 	cub = ft_calloc(1, sizeof(t_map));
 	if (cub == NULL)
 		return (close(fd), free_map(cub), ERR_ALLOCATION);
+	cub->spawn_x = -1;
 	error = parse_map_data(cub, fd);
 	if (error != ERR_NONE)
 		return (close(fd), free_map(cub), error);

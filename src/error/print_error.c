@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:05:19 by apierret          #+#    #+#             */
-/*   Updated: 2025/10/14 15:35:22 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 16:02:36 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*get_error_message_two(t_error err)
 	if (err == ERR_MAP_INVALID_CHAR)
 		return ("The map contains an invalid character");
 	if (err == ERR_MAP_SPAWN)
-		return ("The map must contain only one spawn point");
+		return ("The map must contain one spawn point");
 	if (err == ERR_MAP_NOT_CLOSED)
 		return ("The map must be surrounded by walls");
 	return ("Unknown error");
