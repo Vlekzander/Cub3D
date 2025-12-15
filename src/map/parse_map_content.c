@@ -76,12 +76,12 @@ static t_error	fill_grid_line(t_map *map, int y, char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_strchr(" 01NSEW", str[i]) == NULL
-			|| (ft_strchr("NSEW", str[i]) != NULL && map->facing != 0))
-			return (ERR_FILE_FORMAT);
-		if (str[i] == ' ')
-			map->grid[y * map->width + i] = OUTSIDE;
-		else if (str[i] == '1')
+		if (ft_strchr(" 01NSEW", str[i]) == NULL)
+			return (ERR_MAP_INVALID_CHAR);
+		if (ft_strchr("NSEW", str[i]) != NULL && map->facing != 0)
+			return (ERR_MAP_SPAWN);
+		map->grid[y * map->width + i] = OUTSIDE;
+		if (str[i] == '1')
 			map->grid[y * map->width + i] = WALL;
 		else if (str[i] == '0' || ft_strchr("NSEW", str[i]) != NULL)
 			map->grid[y * map->width + i] = SPACE;
@@ -111,7 +111,7 @@ static t_error	fill_grid(t_map *map, char **array)
 		if (is_space(array[i]))
 			empty_flag = 1;
 		else if (empty_flag)
-			return (ERR_FILE_FORMAT);
+			return (ERR_MAP_SPACE);
 		error = fill_grid_line(map, i, array[i]);
 		if (error != ERR_NONE)
 			return (error);
@@ -130,9 +130,9 @@ t_error	parse_map_content(t_map *map, int fd)
 		return (ERR_IMPLEMENTATION);
 	buffer = read_file(fd);
 	if (buffer == NULL)
-		return (ERR_FILE_FORMAT);
+		return (ERR_FILE_READ);
 	if (!is_map_block(buffer))
-		return (free(buffer), ERR_FILE_FORMAT);
+		return (free(buffer), ERR_MAP_SPACE);
 	strs = ft_split(buffer, '\n');
 	if (strs == NULL)
 		return (free(buffer), ERR_ALLOCATION);

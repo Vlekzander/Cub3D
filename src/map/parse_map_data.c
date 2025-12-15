@@ -28,9 +28,10 @@ static void	prepare_line(char *str)
 	i = 0;
 	while (str[i] != '\0' && str[i] == ' ')
 		i++;
+	if (str[i] != 'C' && str[i] != 'F')
+		return ;
 	flag = 0;
-	j = i;
-	i = 0;
+	j = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == ' ' && !flag)
@@ -61,12 +62,12 @@ static t_error	parse_color(int *color_ptr, char *line)
 		return (ERR_IMPLEMENTATION);
 	if (len_ddarray((void **) strs) != 3 || !str_isdigit(strs[0])
 		|| !str_isdigit(strs[1]) || !str_isdigit(strs[2]))
-		return (free_ddarray((void **) strs), ERR_FILE_FORMAT);
+		return (free_ddarray((void **) strs), ERR_MAP_DATA_FORMAT);
 	r = ft_atoi(strs[0]);
 	g = ft_atoi(strs[1]);
 	b = ft_atoi(strs[2]);
 	if (r > 255 || g > 255 || b > 255 || r < 0 || g < 0 || b < 0)
-		return (free_ddarray((void **) strs), ERR_FILE_FORMAT);
+		return (free_ddarray((void **) strs), ERR_MAP_DATA_COLOR);
 	*color_ptr = rgb(r, g, b);
 	return (free_ddarray((void **) strs), ERR_NONE);
 }
@@ -82,7 +83,7 @@ static t_error	parse_data(t_map *map, char *line)
 	if (strs == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (len_ddarray((void **) strs) != 2)
-		return (free_ddarray((void **) strs), ERR_FILE_FORMAT);
+		return (free_ddarray((void **) strs), ERR_MAP_DATA_FORMAT);
 	if (ft_strncmp(strs[0], "C", 2) == 0 && map->color_ceil == 0)
 		error = parse_color(&map->color_ceil, strs[1]);
 	else if (ft_strncmp(strs[0], "F", 2) == 0 && map->color_floor == 0)
@@ -96,7 +97,7 @@ static t_error	parse_data(t_map *map, char *line)
 	else if (ft_strncmp(strs[0], "WE", 3) == 0 && map->west == NULL)
 		error = parse_tga(&map->west, strs[1]);
 	else
-		error = ERR_FILE_FORMAT;
+		error = ERR_MAP_DATA_UNKNOWN;
 	return (free_ddarray((void **) strs), error);
 }
 

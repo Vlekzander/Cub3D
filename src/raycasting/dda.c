@@ -6,7 +6,7 @@
 /*   By: emarlier <emarlier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 11:52:14 by emarlier          #+#    #+#             */
-/*   Updated: 2025/12/14 20:34:26 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/15 15:35:18 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	perf_dda(t_hit_result *res, t_dda_ctx *ctx, t_map *map)
 {
 	if (res == NULL || ctx == NULL || map == NULL)
 		return ;
-	while (res != NULL && ctx != NULL && map != NULL)
+	while (res->pos.x >= 0 && res->pos.x < map->width
+		&& res->pos.y >= 0 && res->pos.y < map->height)
 	{
 		if (ctx->side.x < ctx->side.y)
 		{
@@ -42,8 +43,8 @@ static void	perf_dda(t_hit_result *res, t_dda_ctx *ctx, t_map *map)
 		}
 		if (get_cell_type(map, res->pos.x, res->pos.y) == WALL)
 		{
-			res->dist.x = ctx->side.x - ctx->delta.x;
-			res->dist.y = ctx->side.y - ctx->delta.y;
+			res->dist = (t_vec2f){ctx->side.x - ctx->delta.x,
+				ctx->side.y - ctx->delta.y};
 			return ;
 		}
 	}
