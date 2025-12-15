@@ -28,6 +28,8 @@ static void	prepare_line(char *str)
 	i = 0;
 	while (str[i] != '\0' && str[i] == ' ')
 		i++;
+	if (str[i] != 'C' && str[i] != 'F')
+		return ;
 	flag = 0;
 	j = 0;
 	while (str[i] != '\0')
