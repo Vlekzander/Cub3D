@@ -16,6 +16,10 @@
 
 static char	*get_error_message_two(t_error err)
 {
+	if (err == ERR_MAP_DATA_FORMAT)
+		return ("Invalid map data format");
+	if (err == ERR_MAP_DATA_UNKNOWN)
+		return ("Unknown map data");
 	if (err == ERR_MAP_DATA_COLOR)
 		return ("Color component out of range [0-255]");
 	if (err == ERR_MAP_SPACE)
@@ -37,24 +41,24 @@ static char	*get_error_message(t_error err)
 		return ("Implementation error");
 	if (err == ERR_ALLOCATION)
 		return ("Allocation error");
-	if (err == ERR_FILE_OPEN)
-		return ("Open file error");
 	if (err == ERR_FILE_READ)
-		return ("Read file error");
-	if (err == ERR_FILE_EXTENSION)
-		return ("Invalid file extension");
+		return ("Failed to read file");
 	if (err == ERR_FILE_FORMAT)
 		return ("Invalid file format");
+	if (err == ERR_TGA_OPEN)
+		return ("Failed to open image");
+	if (err == ERR_TGA_EXTENSION)
+		return ("The image extension is not '.tga'");
 	if (err == ERR_TGA_HEADER)
 		return ("Failed to read image header");
 	if (err == ERR_TGA_FORMAT)
 		return ("TGA Format not supported");
 	if (err == ERR_TGA_CONTENT)
 		return ("Failed to read image content");
-	if (err == ERR_MAP_DATA_FORMAT)
-		return ("Invalid map data format");
-	if (err == ERR_MAP_DATA_UNKNOWN)
-		return ("Unknown map data");
+	if (err == ERR_MAP_EXTENSION)
+		return ("The map extension is not '.cub'");
+	if (err == ERR_MAP_OPEN)
+		return ("Failed to open map");
 	return (get_error_message_two(err));
 }
 

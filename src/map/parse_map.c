@@ -26,10 +26,10 @@ t_error	parse_map(t_map **map, const char *path)
 	if (map == NULL || path == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (!strend(path, ".cub"))
-		return (ERR_FILE_EXTENSION);
+		return (ERR_MAP_EXTENSION);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (ERR_FILE_OPEN);
+		return (ERR_MAP_OPEN);
 	cub = ft_calloc(1, sizeof(t_map));
 	if (cub == NULL)
 		return (close(fd), free_map(cub), ERR_ALLOCATION);

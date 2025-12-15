@@ -108,10 +108,10 @@ t_error	parse_tga(t_image **image, const char *path)
 	if (image == NULL || path == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (!strend(path, ".tga"))
-		return (ERR_FILE_EXTENSION);
+		return (ERR_TGA_EXTENSION);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		return (ERR_FILE_OPEN);
+		return (ERR_TGA_OPEN);
 	error = read_header(&header, fd);
 	if (error != ERR_NONE)
 		return (close(fd), error);
