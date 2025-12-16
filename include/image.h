@@ -40,9 +40,7 @@ typedef struct s_tga_header
 t_image	*create_image(int width, int height);
 void	free_image(t_image *image);
 void	put_pixel(t_image *image, int x, int y, int color);
-void	fill_image(t_image *image, int color);
 void	draw_image(t_image *dst, t_image *src, int x, int y);
-t_error	copy_image(t_image **dst, t_image *src);
 t_error	parse_tga(t_image **image, const char *path);
 
 #endif

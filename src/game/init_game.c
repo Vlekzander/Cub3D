@@ -15,7 +15,7 @@
 #include "game.h"
 #include "map.h"
 
-void	set_player_direction(t_game *game)
+static void	set_player_direction(t_game *game)
 {
 	if (game == NULL)
 		return ;
