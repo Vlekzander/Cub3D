@@ -22,15 +22,6 @@ typedef struct s_rect
 	int	height;
 }	t_rect;
 
-typedef struct s_line
-{
-	int	sx;
-	int	sy;
-	int	ex;
-	int	ey;
-}	t_line;
-
 void	draw_rect(t_image *image, t_rect rect, int fill, int color);
-void	draw_line(t_image *image, t_line line, int color);
 
 #endif
