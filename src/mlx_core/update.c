@@ -20,22 +20,34 @@
 #include "utils.h"
 #include "vec.h"
 
-int	check_colide(t_game *game)
+int	collide(t_map *map, t_vec2f pos)
 {
-	t_vec2f	pos;
-
-	if (game == NULL)
+	if (map == NULL)
 		return (0);
-	pos = game->player_pos;
-	if (get_cell_type(game->map, pos.x + COLIDE, pos.y + COLIDE) == WALL)
+	if (get_cell_type(map, pos.x + COLIDE, pos.y + COLIDE) == WALL)
 		return (1);
-	if (get_cell_type(game->map, pos.x - COLIDE, pos.y - COLIDE) == WALL)
+	if (get_cell_type(map, pos.x - COLIDE, pos.y - COLIDE) == WALL)
 		return (1);
-	if (get_cell_type(game->map, pos.x + COLIDE, pos.y - COLIDE) == WALL)
+	if (get_cell_type(map, pos.x + COLIDE, pos.y - COLIDE) == WALL)
 		return (1);
-	if (get_cell_type(game->map, pos.x - COLIDE, pos.y + COLIDE) == WALL)
+	if (get_cell_type(map, pos.x - COLIDE, pos.y + COLIDE) == WALL)
 		return (1);
 	return (0);
+}
+
+void	logic_collisions(t_game *game, t_vec2f before)
+{
+	if (game == NULL)
+		return ;
+	if (collide(game->map, game->player_pos))
+	{
+		if (!collide(game->map, (t_vec2f){before.x, game->player_pos.y}))
+			game->player_pos.x = before.x;
+		else if (!collide(game->map, (t_vec2f){game->player_pos.x, before.y}))
+			game->player_pos.y = before.y;
+		else
+			game->player_pos = before;
+	}
 }
 
 void	logic_movements(t_game *game, float delta)
@@ -44,8 +56,7 @@ void	logic_movements(t_game *game, float delta)
 
 	if (game == NULL)
 		return ;
-	before.x = game->player_pos.x;
-	before.y = game->player_pos.y;
+	before = game->player_pos;
 	if (game->forward)
 		game->player_pos = vec2f_add(game->player_pos,
 				vec2f_div(vec2f_rot(game->direction, rad(0)), delta));
@@ -58,11 +69,7 @@ void	logic_movements(t_game *game, float delta)
 	if (game->right)
 		game->player_pos = vec2f_add(game->player_pos,
 				vec2f_div(vec2f_rot(game->direction, rad(90)), delta));
-	if (check_colide(game))
-	{
-		game->player_pos.x = before.x;
-		game->player_pos.y = before.y;
-	}
+	logic_collisions(game, before);
 }
 
 static void	logic(t_game *game)
