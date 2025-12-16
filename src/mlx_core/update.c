@@ -20,7 +20,7 @@
 #include "utils.h"
 #include "vec.h"
 
-int	collide(t_map *map, t_vec2f pos)
+static int	collide(t_map *map, t_vec2f pos)
 {
 	if (map == NULL)
 		return (0);
@@ -35,7 +35,7 @@ int	collide(t_map *map, t_vec2f pos)
 	return (0);
 }
 
-void	logic_collisions(t_game *game, t_vec2f before)
+static void	logic_collisions(t_game *game, t_vec2f before)
 {
 	if (game == NULL)
 		return ;
@@ -50,7 +50,7 @@ void	logic_collisions(t_game *game, t_vec2f before)
 	}
 }
 
-void	logic_movements(t_game *game, float delta)
+static void	logic_movements(t_game *game, float delta)
 {
 	t_vec2f	before;
 
