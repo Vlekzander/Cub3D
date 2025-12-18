@@ -122,6 +122,6 @@ t_error	parse_tga(t_image **image, const char *path)
 		return (close(fd), ERR_ALLOCATION);
 	error = parse_image(img, &header, fd);
 	if (error != ERR_NONE)
-		return (close(fd), error);
+		return (free_image(img), close(fd), error);
 	return (close(fd), *image = img, ERR_NONE);
 }
