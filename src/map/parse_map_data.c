@@ -97,7 +97,7 @@ static t_error	parse_data(t_map *map, char *line)
 	else if (ft_strncmp(strs[0], "WE", 3) == 0 && map->west == NULL)
 		error = parse_tga(&map->west, strs[1]);
 	else
-		error = ERR_MAP_DATA_UNKNOWN;
+		error = ERR_MAP_INVALID;
 	return (free_ddarray((void **) strs), error);
 }
 
@@ -105,18 +105,14 @@ t_error	parse_map_data(t_map *map, int fd)
 {
 	t_error	error;
 	char	*line;
-	char	*nl;
 
 	if (map == NULL || fd == -1)
 		return (ERR_IMPLEMENTATION);
 	line = get_next_line(fd);
-	while (line != NULL
-		&& (map->color_ceil == 0 || map->color_floor == 0 || map->north == NULL
-			|| map->south == NULL || map->east == NULL || map->west == NULL))
+	while (line != NULL)
 	{
-		nl = ft_strrchr(line, '\n');
-		if (nl != NULL)
-			*nl = '\0';
+		if (ft_strrchr(line, '\n') != NULL)
+			*ft_strrchr(line, '\n') = '\0';
 		if (!is_space(line))
 		{
 			prepare_line(line);
@@ -125,7 +121,11 @@ t_error	parse_map_data(t_map *map, int fd)
 				return (free(line), get_next_line(-1), error);
 		}
 		free(line);
-		line = get_next_line(fd);
+		line = NULL;
+		if (map->north == NULL || map->south == NULL
+			|| map->east == NULL || map->west == NULL
+			|| map->color_ceil == 0 || map->color_floor == 0)
+			line = get_next_line(fd);
 	}
 	return (free(line), ERR_NONE);
 }

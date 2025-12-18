@@ -132,7 +132,7 @@ t_error	parse_map_content(t_map *map, int fd)
 	if (buffer == NULL)
 		return (ERR_FILE_READ);
 	if (!is_map_block(buffer))
-		return (free(buffer), ERR_MAP_SPACE);
+		return (free(buffer), ERR_MAP_INVALID);
 	strs = ft_split(buffer, '\n');
 	if (strs == NULL)
 		return (free(buffer), ERR_ALLOCATION);
