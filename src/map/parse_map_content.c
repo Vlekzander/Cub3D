@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 12:26:04 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/08 12:25:05 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:24:21 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ static t_error	prepare_grid(t_cell_type **grid, int *width, int *height,
 	i = 0;
 	while (array[i] != NULL)
 	{
-		strtrim_end(array[i], " ");
-		if (ft_strlen(array[i]) == 0)
-			return (ERR_FILE_FORMAT);
 		c_len = ft_strlen(array[i]);
 		if (c_len > len)
 			len = c_len;
@@ -125,6 +122,7 @@ t_error	parse_map_content(t_map *map, int fd)
 	t_error			error;
 	char			*buffer;
 	char			**strs;
+	int				i;
 
 	if (map == NULL || fd == -1)
 		return (ERR_IMPLEMENTATION);
@@ -136,9 +134,12 @@ t_error	parse_map_content(t_map *map, int fd)
 	strs = ft_split(buffer, '\n');
 	if (strs == NULL)
 		return (free(buffer), ERR_ALLOCATION);
-	error = prepare_grid(&map->grid, &map->width, &map->height, strs);
+	i = 0;
+	while (str_space(strs[i]))
+		i++;
+	error = prepare_grid(&map->grid, &map->width, &map->height, strs + i);
 	if (error != ERR_NONE)
 		return (free(buffer), free_ddarray((void **) strs), error);
-	error = fill_grid(map, strs);
+	error = fill_grid(map, strs + i);
 	return (free(buffer), free_ddarray((void **) strs), error);
 }

@@ -6,7 +6,7 @@
 /*   By: apierret <apierret@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:29:28 by apierret          #+#    #+#             */
-/*   Updated: 2025/12/14 20:51:09 by apierret         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:13:34 by apierret         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char		*strtrim_end(char *str, const char *set);
 int			str_isdigit(const char *str);
 float		rad(float deg);
 long long	get_time(void);
+int			str_space(char *str);
 
 #endif

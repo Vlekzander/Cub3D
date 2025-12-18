@@ -14,7 +14,7 @@ SOURCES = src/main.c	\
 		  src/mlx_core/free_core.c src/mlx_core/init_core.c src/mlx_core/key_down_handler.c src/mlx_core/key_up_handler.c src/mlx_core/update.c	\
 		  src/raycasting/dda.c src/raycasting/draw_stripe.c src/raycasting/raycast.c src/raycasting/vec2f.c	\
 		  src/shapes/draw_rect.c	\
-		  src/utils/free_ddarray.c src/utils/get_time.c src/utils/is_space.c src/utils/len_ddarray.c src/utils/rad.c src/utils/read_file.c src/utils/str_isdigit.c src/utils/strend.c src/utils/strtrim_end.c
+		  src/utils/free_ddarray.c src/utils/get_time.c src/utils/is_space.c src/utils/len_ddarray.c src/utils/rad.c src/utils/read_file.c src/utils/str_isdigit.c src/utils/strend.c src/utils/strtrim_end.c src/utils/str_space.c
 OBJECTS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.d)
 NAME = cub3D
