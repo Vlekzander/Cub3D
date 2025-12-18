@@ -56,7 +56,7 @@ static t_error	parse_color(int *color_ptr, char *line)
 	if (color_ptr == NULL || line == NULL)
 		return (ERR_IMPLEMENTATION);
 	if (strend(line, ","))
-		return (ERR_FILE_FORMAT);
+		return (ERR_MAP_DATA_FORMAT);
 	strs = ft_split(line, ',');
 	if (strs == NULL)
 		return (ERR_IMPLEMENTATION);
