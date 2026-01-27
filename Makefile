@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(LIBFT_DIR)/include -I$(MLX_DIR) -g
-LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+CFLAGS = -Wall -Wextra -Werror -Iinclude -flto -O3 -I$(LIBFT_DIR)/include -I$(MLX_DIR)
+LDFLAGS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -O3 -flto -lmlx -lXext -lX11 -lm
 LIBFT_DIR= lib/libft
 LIBFT_LIB= $(LIBFT_DIR)/libft.a
 MLX_DIR= lib/mlx
