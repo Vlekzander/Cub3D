@@ -1,6 +1,6 @@
 [submodule "lib/libft"]
 	path = lib/libft
-	url = ssh://git@codeberg.org/Vlekzander/libft.git
+	url = git@github.com:Vlekzander/libft.git
 [submodule "lib/mlx"]
 	path = lib/mlx
 	url = https://github.com/42paris/minilibx-linux.git
